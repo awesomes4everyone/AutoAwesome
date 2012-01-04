@@ -1,0 +1,9 @@
+Add this link to your book marks:
+
+javascript:(function(){$('body').append('<script src="https://raw.github.com/awesomes4everyone/AutoAwesome/master/AutoAwesome.js"></script>');})();
+
+click to turn on autoawesome.
+
+Reload the page to turn off.
+
+Happy Turntabling!
