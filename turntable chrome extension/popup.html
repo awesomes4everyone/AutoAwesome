@@ -1,0 +1,54 @@
+<!--<button type="button" id="autobutton" onClick="checkandinject(clickResponseHandler)">AutoAwesome!</button> -->
+
+<form>
+<input type="checkbox" id="autobutton" onClick="checkandinject(clickResponseHandler)">AutoAwesome!</input>
+</form>
+<script>
+
+function checkandinject(clickornoclick)
+{
+	chrome.tabs.getSelected(
+		null, 
+		function(tab) 
+		{
+			chrome.tabs.sendRequest(
+				tab.id, 
+				{check: "yes"}, 
+				clickornoclick
+			);
+		}
+	);
+}
+
+function clickResponseHandler(response)
+{
+	if(response.check == "notloaded")
+	{
+		chrome.tabs.executeScript(null, {file: "injectionload.js"});
+		document.getElementById("autobutton").setAttribute("checked","true");
+	}
+	else if(response.check == "loaded")
+	{
+		//todo: remove the DOM element script, remove the turntable eventlistener
+		chrome.tabs.executeScript(null, {file: "outjectionload.js"});
+		document.getElementById("autobutton").removeAttribute("checked");
+	}
+	else
+	{
+		alert('doh');
+	}
+}
+
+function responseHandler(response)
+{
+	if(response.check == "loaded")
+	{
+		document.getElementById("autobutton").setAttribute("checked","true");
+	}
+}
+
+checkandinject(responseHandler);
+
+</script>
+
+

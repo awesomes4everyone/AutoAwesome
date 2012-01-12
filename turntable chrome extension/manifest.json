@@ -1,0 +1,28 @@
+{
+  "name": "AutoAwesome",
+  "version": "0.1",
+  "description": "AutoAwesome",
+  "background_page": "background.html",
+  "page_action" :
+  {
+    "default_icon" : "icon-19.png",
+    "default_title" : "AutoAwesome",
+	"popup": "popup.html"
+  },
+  "content_scripts" : [
+    {
+      "matches" : [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js" : ["contentscript.js"]
+	}
+  ],
+  "permissions" : [
+    "tabs", "http://*/*", "https://*/*"
+  ],
+  "icons" : {
+    "48" : "icon-48.png",
+    "128" : "icon-128.png"
+  }
+}
